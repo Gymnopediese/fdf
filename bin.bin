@@ -1,0 +1,31 @@
+
+void	carreaux_top_view(t_camera cam, int x, int y)
+{
+	ft_putnbrn(x);
+	ft_putnbrn(y);
+	if (x + 1 < cam.map.size.y)
+	{
+		ft_draw_line(&cam.w.cvs, ft_vec2(SIZE * x, SIZE * y), ft_vec2(SIZE * (x + 1), SIZE *  y), WHITE);
+		carreaux_top_view(cam, x + 1, y);
+	}
+	if (y + 1 < cam.map.size.x)
+	{
+		ft_draw_line(&cam.w.cvs, ft_vec2(SIZE * x, SIZE * y), ft_vec2(SIZE * x, SIZE * (y + 1)), WHITE);
+		carreaux_top_view(cam, x, y + 1);
+	}
+}
+
+void	carreaux(t_camera cam, int x, int y)
+{
+	ft_putnbrn(x);
+	if (x + 1 < cam.map.size.x)
+	{
+		ft_draw_line(&cam.w.cvs, screen_position(cam, x, y), screen_position(cam, x + 1, y), WHITE);
+		carreaux(cam, x + 1, y);
+	}
+	if (y + 1 < cam.map.size.y)
+	{
+		ft_draw_line(&cam.w.cvs, screen_position(cam, x, y), screen_position(cam, x, y + 1), WHITE);
+		carreaux(cam, x, y + 1);
+	}
+}
